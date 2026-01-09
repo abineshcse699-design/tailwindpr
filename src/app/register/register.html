@@ -1,0 +1,94 @@
+<div class="page">
+
+  <!-- Card -->
+  <div class="card">
+
+    <!-- LEFT IMAGE -->
+    <div class="left">
+      <div class="overlay">
+        <h1>Welcome</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Aenean suspendisse aliquam varius.
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="right">
+      <h2>Register</h2>
+      <p class="sub">
+        Create your account. It’s free and only takes a minute
+      </p>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="First Name"
+            [(ngModel)]="user.firstName" name="firstName">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Last Name"
+            [(ngModel)]="user.lastName" name="lastName">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full">
+        <input matInput placeholder="Email"
+          [(ngModel)]="user.email" name="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <input matInput type="password" placeholder="Password"
+          [(ngModel)]="user.password" name="password">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <input matInput type="password" placeholder="Confirm Password"
+          [(ngModel)]="user.confirmPassword" name="confirmPassword">
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="user.accept" name="accept">
+        I accept the <span class="link">Terms of Use</span> & Privacy Policy
+      </mat-checkbox>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="register-btn"
+        (click)="register()"
+        [disabled]="!user.accept">
+        Register Now
+      </button>
+
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section" *ngIf="usersList.length">
+    <h3>Registered Users</h3>
+
+    <table mat-table [dataSource]="usersList" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let u"> {{u.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let u"> {{u.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let u"> {{u.email}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+  </div>
+
+</div>

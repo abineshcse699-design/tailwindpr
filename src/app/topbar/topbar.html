@@ -1,0 +1,52 @@
+<div class="h-14 bg-gray-850 flex items-center justify-between px-6 text-white">
+
+  <h3 class="font-semibold">Dashboard</h3>
+
+  <!-- USER MENU -->
+  <div class="relative user-menu">
+
+    <!-- USER CLICK -->
+    <div
+      class="flex items-center gap-2 cursor-pointer"
+      (click)="toggleMenu()"
+    >
+      <img src="https://i.pravatar.cc/40"
+           class="rounded-full w-8 h-8">
+      <span class="font-medium">Admin User</span>
+      <span>▾</span>
+    </div>
+
+    <!-- DROPDOWN -->
+    <div
+      *ngIf="isMenuOpen"
+      class="absolute right-0 mt-3 w-44 bg-gray-800 rounded-lg shadow-lg z-50"
+    >
+
+      <button
+        class="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-700"
+        (click)="goToProfile()"
+      >
+        👤 Profile
+      </button>
+
+      <button
+        class="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-700"
+        (click)="goToSettings()"
+      >
+        ⚙️ Settings
+      </button>
+
+      <hr class="border-gray-700 my-1">
+
+      <button
+        class="w-full flex items-center gap-3 px-4 py-2 hover:bg-red-600"
+        (click)="logout()"
+      >
+        🚪 Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

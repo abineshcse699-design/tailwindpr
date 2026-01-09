@@ -1,0 +1,61 @@
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
+
+  <!-- HEADER -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
+      Admin Dashboard
+    </h1>
+
+    <button
+      class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+        Users
+      </h3>
+      <p class="text-3xl font-bold text-indigo-600 mt-2">120</p>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+        Orders
+      </h3>
+      <p class="text-3xl font-bold text-green-600 mt-2">45</p>
+    </div>
+
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+        Revenue
+      </h3>
+      <p class="text-3xl font-bold text-pink-600 mt-2">₹25,000</p>
+    </div>
+
+  </div>
+
+  <!-- GRAPHS SECTION -->
+
+  <!-- GRAPHS -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+
+  <div class="md:col-span-2 bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4">Revenue Analytics</h3>
+    <canvas #revenueCanvas></canvas>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4">User Distribution</h3>
+    <canvas #userCanvas></canvas>
+  </div>
+
+</div>
+
+
+</div>

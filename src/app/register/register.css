@@ -1,0 +1,66 @@
+.page {
+  background: linear-gradient(135deg, #b993f5, #d9bfff);
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.card {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.left {
+  width: 45%;
+  background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  height: 100%;
+  padding: 40px;
+}
+
+.right {
+  width: 55%;
+  padding: 40px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.full {
+  width: 100%;
+}
+
+.register-btn {
+  width: 100%;
+  margin-top: 20px;
+  height: 45px;
+}
+
+.sub {
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #7b4dff;
+}
+
+.table-section {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
