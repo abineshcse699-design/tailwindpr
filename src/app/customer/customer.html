@@ -1,0 +1,184 @@
+<div class="min-h-screen bg-gray-900 text-white p-6">
+
+  <!-- TABS -->
+  <div class="flex gap-10 mb-6 border-b border-gray-700">
+    <button
+      (click)="setTab('customers')"
+      [class.text-indigo-400]="currentTab==='customers'">
+      Customers
+    </button>
+
+    <button
+      (click)="setTab('leads')"
+      [class.text-indigo-400]="currentTab==='leads'">
+      Leads
+    </button>
+
+    <button
+      (click)="setTab('tasks')"
+      [class.text-indigo-400]="currentTab==='tasks'">
+      Tasks
+    </button>
+  </div>
+
+  <!-- ================= CUSTOMERS ================= -->
+  <div *ngIf="currentTab === 'customers'">
+
+    <!-- DASHBOARD -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="bg-gray-800 p-6 rounded-xl text-center">
+        <h2 class="text-3xl font-bold">{{ customers.length }}</h2>
+        <p class="text-gray-400">Customers</p>
+      </div>
+
+      <div class="bg-gray-800 p-6 rounded-xl text-center">
+        <h2 class="text-3xl font-bold">
+          ${{ totalPipelineValue | number }}
+        </h2>
+        <p class="text-gray-400">Pipeline Value</p>
+      </div>
+    </div>
+
+    <!-- ADD CUSTOMER -->
+    <form
+      (ngSubmit)="addCustomer()"
+      class="bg-gray-800 p-6 rounded-xl max-w-xl mb-10 space-y-3">
+
+      <input
+        class="w-full p-2 rounded bg-gray-700"
+        placeholder="Customer Name"
+        [(ngModel)]="customer.name"
+        name="name"
+        required
+      />
+
+      <input
+        class="w-full p-2 rounded bg-gray-700"
+        placeholder="Company"
+        [(ngModel)]="customer.company"
+        name="company"
+        required
+      />
+
+      <input
+        class="w-full p-2 rounded bg-gray-700"
+        placeholder="Email"
+        [(ngModel)]="customer.email"
+        name="email"
+      />
+
+      <input
+        class="w-full p-2 rounded bg-gray-700"
+        placeholder="Phone"
+        [(ngModel)]="customer.phone"
+        name="phone"
+      />
+
+      <input
+        type="number"
+        class="w-full p-2 rounded bg-gray-700"
+        placeholder="Deal Value"
+        [(ngModel)]="customer.value"
+        name="value"
+      />
+
+      <select
+        class="w-full p-2 rounded bg-gray-700"
+        [(ngModel)]="customer.status"
+        name="status">
+        <option value="Active">Active</option>
+        <option value="Prospect">Prospect</option>
+      </select>
+
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 p-2 rounded font-semibold">
+        Add Customer
+      </button>
+    </form>
+
+    <!-- CUSTOMER CARDS -->
+
+    <!-- CUSTOMER CARDS -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <div
+    *ngFor="let c of customers"
+    class="bg-[#3a3a3a] rounded-xl p-6 shadow-md"
+  >
+
+    <!-- TOP : Profile + Name -->
+    <div class="flex items-start gap-4 mb-4">
+      <!-- Profile Icon -->
+      <div
+        class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center"
+      >
+        <!-- user icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </div>
+
+      <!-- Name + Company -->
+      <div>
+        <h3 class="text-lg font-semibold">{{ c.name }}</h3>
+        <p class="text-gray-300 text-sm">{{ c.company }}</p>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="space-y-2 text-sm text-gray-200 mb-4">
+      <p class="flex items-center gap-2">
+        📧 {{ c.email }}
+      </p>
+      <p class="flex items-center gap-2">
+        📞 {{ c.phone }}
+      </p>
+      <p class="flex items-center gap-2">
+        💲 {{ c.value | number }}
+      </p>
+    </div>
+
+    <!-- STATUS -->
+    <span
+      class="inline-block mb-4 px-4 py-1 rounded-full text-sm"
+      [ngClass]="{
+        'bg-gray-600': c.status === 'Active',
+        'bg-gray-500': c.status === 'Prospect'
+      }"
+    >
+      {{ c.status }}
+    </span>
+
+    <!-- ACTIONS -->
+    <div class="flex items-center gap-6 text-sm text-gray-300">
+      <button class="hover:text-white">View</button>
+      <button class="hover:text-white">Edit</button>
+      <button
+        (click)="deleteCustomer(c.id)"
+        class="hover:text-red-400 text-xl"
+      >
+        delete
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+
+  </div>
+
+  <!-- ================= LEADS ================= -->
+  <div *ngIf="currentTab === 'leads'" class="text-2xl text-gray-400">
+    Sales Pipeline (Leads) 🚀
+  </div>
+
+  <!-- ================= TASKS ================= -->
+  <div *ngIf="currentTab === 'tasks'" class="text-2xl text-gray-400">
+    Task Management ✅
+  </div>
+
+</div>

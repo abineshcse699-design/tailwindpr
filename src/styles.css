@@ -1,3 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tailwindcss";
+
+/* Smooth theme animation */
+html {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ===== Angular Material Dark Mode ===== */
+
+.dark .mat-mdc-text-field-wrapper {
+  background-color: #1f2937 !important;
+}
+
+.dark .mat-mdc-input-element {
+  color: white !important;
+}
+
+.dark .mdc-floating-label {
+  color: #9ca3af !important;
+}
+
+.dark .mat-mdc-checkbox {
+  color: #e5e7eb !important;
+}
+
+.dark .mat-mdc-raised-button {
+  background-color: #4f46e5 !important;
+  color: white !important;
+}
+
+.dark .mat-mdc-card {
+  background-color: #111827 !important;
+  color: white !important;
+}

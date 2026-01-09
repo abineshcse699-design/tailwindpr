@@ -99,19 +99,16 @@ export class Singleform implements OnInit {
     });
   }
 
-  toggleTheme() {
-    this.isDark = !this.isDark;
-
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
-      this.applyThemeClass();
-    }
-  }
-
-  private applyThemeClass() {
-    if (isPlatformBrowser(this.platformId)) {
-      document.documentElement.classList.toggle('dark', this.isDark);
-    }
-  }
+toggleTheme() {
+  this.isDark = !this.isDark;
+  localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+  this.applyThemeClass();
 }
 
+private applyThemeClass() {
+  document.documentElement.classList.toggle('dark', this.isDark);
+}
+
+
+ 
+}

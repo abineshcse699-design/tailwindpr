@@ -1,0 +1,74 @@
+<div class="min-h-screen bg-gray-900 text-white p-10">
+
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold">User Profile</h1>
+    <p class="text-gray-400">Manage your personal information and account settings.</p>
+  </div>
+
+  <!-- Profile Card -->
+  <div class="max-w-6xl mx-auto bg-gray-800 rounded-xl shadow-xl p-8">
+
+    <!-- Header Row -->
+    <div class="flex items-center justify-between mb-10">
+    <div class="flex items-center space-x-6">
+
+  <div class="w-24 h-24 rounded-full bg-gray-600 flex items-center justify-center border-4 border-gray-700">
+    <svg xmlns="http://www.w3.org/2000/svg"
+      class="w-14 h-14 text-gray-300"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M15.75 7.5a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M4.5 20.25a7.5 7.5 0 0115 0"/>
+    </svg>
+  </div>
+
+  <div>
+    <h2 class="text-2xl font-semibold">
+      {{ user.firstName }} {{ user.lastName }}
+    </h2>
+    <p class="text-gray-400">
+      {{ user.role }} • {{ user.department }}
+    </p>
+  </div>
+
+</div>
+
+
+      <button
+        *ngIf="!isEditMode"
+        (click)="edit()"
+        class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg flex items-center gap-2">
+        ✏ Edit Profile
+      </button>
+    </div>
+
+
+
+    <!-- Bio -->
+    <div class="mt-8">
+      <label class="text-gray-400 text-sm">Bio</label>
+      <textarea
+        [(ngModel)]="editUser.bio"
+        [readonly]="!isEditMode"
+        rows="4"
+        class="w-full mt-2 p-4 rounded bg-gray-700 border border-gray-600 resize-none">
+      </textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div *ngIf="isEditMode" class="flex justify-end space-x-4 mt-8">
+      <button (click)="save()" class="bg-green-600 px-6 py-2 rounded-lg hover:bg-green-700">
+        Save
+      </button>
+      <button (click)="cancel()" class="bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+</div>

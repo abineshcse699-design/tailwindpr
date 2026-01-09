@@ -1,0 +1,126 @@
+<div class="h-screen bg-[#2d2d2d] text-white flex flex-col">
+
+  <!-- TOP BAR -->
+  <div class="h-16 flex items-center px-6 border-b border-gray-700">
+    <div class="flex items-center gap-6">
+      <span class="text-xl">☰</span>
+      <span class="text-lg font-medium">Mail</span>
+    </div>
+
+    <div class="flex-1 mx-8 relative">
+      <input
+        [(ngModel)]="searchQuery"
+        (input)="searchEmails()"
+        placeholder="Search mail"
+        class="w-full bg-[#3a3a3a] rounded-md pl-10 pr-4 py-3 outline-none text-sm"
+      />
+      <span class="absolute left-3 top-3 text-gray-400">🔍</span>
+    </div>
+
+    <div class="flex gap-4">
+      ⚙ ?
+    </div>
+  </div>
+
+  <div class="flex flex-1 overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <div class="w-72 bg-[#2f2f2f] border-r border-gray-700 flex flex-col">
+
+      <!-- Compose -->
+      <div class="p-4">
+        <button
+          (click)="composeEmail()"
+          class="w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center shadow-lg hover:bg-indigo-700">
+          ✎
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto px-4 space-y-6">
+
+        <!-- FOLDERS -->
+        <div class="space-y-4">
+          @for (folder of folders(); track folder.name) {
+            <div
+              (click)="selectFolder(folder.name)"
+              class="flex items-center justify-between px-3 py-2 rounded cursor-pointer"
+              [class.bg-[#3b3b3b]]="currentView() === folder.name"
+            >
+              <span>{{ folder.label }}</span>
+              @if (folder.count > 0) {
+                <span class="text-sm text-gray-400">{{ folder.count }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- LABELS -->
+        <div class="border-t border-gray-700 pt-6">
+          <div class="text-sm text-gray-400 mb-4">Labels</div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-3 h-3 bg-red-500 rounded-full"></span> Important
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-3 h-3 bg-green-500 rounded-full"></span> Work
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="flex-1 bg-[#303030] flex flex-col">
+
+      <!-- HEADER -->
+      <div class="h-16 flex items-center justify-between px-6 border-b border-gray-700">
+        <span class="text-lg font-medium">{{ getCurrentFolderLabel() }}</span>
+        <span>⟳ ⋮</span>
+      </div>
+
+      <!-- EMAIL LIST -->
+      @if (!selectedEmail() && getCurrentEmails().length > 0) {
+        <div class="flex-1 overflow-y-auto">
+          @for (email of getCurrentEmails(); track email.id) {
+            <div
+              (click)="selectEmail(email)"
+              class="flex px-6 py-4 border-b border-gray-700 cursor-pointer hover:bg-[#3b3b3b]">
+
+              <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center mr-4">
+                {{ getEmailInitials(email.from) }}
+              </div>
+
+              <div class="flex-1">
+                <div class="flex justify-between">
+                  <span class="font-medium">{{ email.from.split('<')[0] }}</span>
+                  <span class="text-xs text-gray-400">{{ formatDate(email.date) }}</span>
+                </div>
+                <div class="font-semibold">{{ email.subject }}</div>
+                <div class="text-gray-400 text-sm">{{ getEmailPreview(email.body) }}</div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- EMPTY STATE -->
+      @if (getCurrentEmails().length === 0 && !selectedEmail()) {
+        <div class="flex-1 flex flex-col items-center justify-center text-gray-400">
+          <div class="text-7xl mb-4">✉</div>
+          <div class="text-xl font-semibold">No emails</div>
+          <div>Your {{ getCurrentFolderLabel().toLowerCase() }} is empty</div>
+        </div>
+      }
+
+      <!-- EMAIL DETAIL -->
+      @if (selectedEmail(); as email) {
+        <div class="flex-1 p-6 overflow-y-auto">
+          <button (click)="selectedEmail.set(null)" class="mb-4">← Back</button>
+          <h2 class="text-2xl mb-2">{{ email.subject }}</h2>
+          <p class="text-gray-400 mb-4">{{ email.from }}</p>
+          <pre class="whitespace-pre-wrap">{{ email.body }}</pre>
+        </div>
+      }
+
+    </div>
+  </div>
+</div>

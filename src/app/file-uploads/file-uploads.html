@@ -1,0 +1,134 @@
+<div class="min-h-screen bg-gray-50 p-6">
+
+  <!-- Header -->
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-semibold text-gray-900 mb-2">
+      File Upload Components
+    </h1>
+    <p class="text-gray-500">
+      Drag and drop file uploads with progress tracking
+    </p>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
+
+    <!-- Drag & Drop -->
+    <div class="bg-white border rounded-xl p-5 hover:shadow-md transition">
+      <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+        ☁️ Drag & Drop Upload
+      </h2>
+
+      <div class="relative border-2 border-dashed border-gray-300 rounded-xl p-10 text-center
+                  hover:border-blue-500 hover:bg-blue-50 transition cursor-pointer">
+
+        <div class="text-5xl text-gray-400 mb-4">☁️</div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-1">
+          Drop files here
+        </h3>
+        <p class="text-gray-500 mb-4">or click to browse</p>
+
+        <input type="file" multiple
+               class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+
+        <button
+          class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          📁 Browse Files
+        </button>
+      </div>
+    </div>
+
+    <!-- Image Upload -->
+    <div class="bg-white border rounded-xl p-5 hover:shadow-md transition">
+      <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+        🖼 Image Upload
+      </h2>
+
+      <div class="relative border-2 border-dashed border-emerald-400 rounded-xl p-10 text-center
+                  hover:bg-emerald-50 transition cursor-pointer">
+
+        <div class="text-5xl text-emerald-400 mb-4">🖼</div>
+        <h3 class="text-lg font-semibold mb-1">Upload Images</h3>
+        <p class="text-gray-500 mb-4">PNG, JPG, GIF up to 10MB</p>
+
+        <input type="file" accept="image/*" multiple
+               class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+
+        <button
+          class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600">
+          🖼 Select Images
+        </button>
+      </div>
+    </div>
+
+    <!-- Document Upload -->
+    <div class="bg-white border rounded-xl p-5 hover:shadow-md transition">
+      <h2 class="flex items-center gap-2 text-lg font-semibold mb-4">
+        📄 Document Upload
+      </h2>
+
+      <div class="relative border-2 border-dashed border-amber-400 rounded-xl p-10 text-center
+                  hover:bg-amber-50 transition cursor-pointer">
+
+        <div class="text-5xl text-amber-400 mb-4">📄</div>
+        <h3 class="text-lg font-semibold mb-1">Upload Documents</h3>
+        <p class="text-gray-500 mb-4">PDF, DOC, XLS files only</p>
+
+        <input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple
+               class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+
+        <button
+          class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600">
+          📄 Select Documents
+        </button>
+      </div>
+    </div>
+
+    <!-- Uploaded Files -->
+    <div class="bg-white border rounded-xl p-5 hover:shadow-md transition">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="flex items-center gap-2 text-lg font-semibold">
+          📁 Uploaded Files (3)
+        </h2>
+        <button class="text-red-500 hover:text-red-700 text-sm">
+          Clear All
+        </button>
+      </div>
+
+
+      <!-- File List -->
+      <div class="space-y-4">
+
+        <!-- File -->
+        <div class="flex items-center gap-4 border-b pb-4">
+          <div class="text-blue-500 text-xl">📄</div>
+
+          <div class="flex-1">
+            <div class="text-sm font-medium">report.pdf</div>
+            <div class="text-xs text-gray-500 mb-2">1.2MB • PDF</div>
+
+            <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div class="bg-blue-500 h-1.5 rounded-full" style="width: 70%"></div>
+            </div>
+          </div>
+
+          <button class="text-red-500 hover:text-red-700">🗑</button>
+        </div>
+
+        <!-- Uploaded -->
+        <div class="flex items-center gap-4">
+          <div class="text-emerald-500 text-xl">✔</div>
+
+          <div class="flex-1">
+            <div class="text-sm font-medium">photo.jpg</div>
+            <div class="text-xs text-gray-500">2.1MB • Image</div>
+          </div>
+
+          <button class="text-red-500 hover:text-red-700">🗑</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

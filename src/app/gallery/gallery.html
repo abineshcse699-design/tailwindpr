@@ -1,0 +1,108 @@
+<div class="max-w-7xl mx-auto p-6 text-white-900">
+
+  <!-- Title -->
+  <h1 class="text-3xl font-bold mb-2 text-black-300">Gallery</h1>
+  <p class="text-gray-400 mb-8">Image gallery with filtering and preview functionality.</p>
+
+  <!-- Filter Buttons -->
+  <div class="bg-gray-800 p-5 rounded-xl mb-8">
+    <h3 class="text-lg font-semibold mb-4">Filter by Category</h3>
+    <div class="flex flex-wrap gap-3">
+      @for (category of categories(); track category.value) {
+
+        <button
+  (click)="selectCategory(category.value)"
+  class="px-4 py-2 rounded-lg text-sm font-medium transition
+         bg-gray-700 text-gray-300 hover:bg-gray-600"
+  [class.bg-indigo-600]="selectedCategory() === category.value"
+  [class.text-white]="selectedCategory() === category.value"
+  [class.bg-gray-700]="selectedCategory() !== category.value"
+  [class.text-gray-300]="selectedCategory() !== category.value"
+>
+  {{ category.label }}
+</button>
+
+
+      }
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    @for (item of filteredItems(); track item.id) {
+      <div
+        (click)="openImageDialog(item)"
+        class="bg-gray-800 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition">
+
+        <div class="relative h-48 overflow-hidden group">
+          <img
+            [src]="item.imageUrl"
+            class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-white" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 10l4.553-4.553a1.5 1.5 0 10-2.121-2.121L13 7.879M9 14l-4.553 4.553a1.5 1.5 0 102.121 2.121L11 16.121" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="p-4">
+          <h4 class="font-semibold text-lg mb-1">{{ item.title }}</h4>
+          <p class="text-gray-400 text-sm mb-3">{{ item.description }}</p>
+          <span class="inline-block bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full text-xs">
+            {{ item.category }}
+          </span>
+        </div>
+
+      </div>
+    }
+
+  </div>
+
+  <!-- Empty State -->
+  @if (filteredItems().length === 0) {
+    <div class="text-center py-24 text-gray-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 mx-auto mb-6 opacity-40"
+        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M3 5h18M3 19h18M5 5v14M19 5v14"/>
+      </svg>
+      <h3 class="text-xl font-semibold">No items found</h3>
+      <p>Try selecting a different category.</p>
+    </div>
+  }
+
+  <!-- Modal -->
+  @if (selectedImage(); as image) {
+    <div
+      class="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
+      (click)="closeImageDialog()">
+
+      <div
+        class="bg-gray-900 rounded-xl max-w-5xl w-full overflow-hidden relative animate-[scaleIn_0.25s_ease]"
+        (click)="$event.stopPropagation()">
+
+        <button
+          (click)="closeImageDialog()"
+          class="absolute top-4 right-4 bg-black/60 hover:bg-black text-white rounded-full p-2">
+          ✕
+        </button>
+
+        <img [src]="image.imageUrl" class="w-full max-h-[500px] object-contain bg-black">
+
+        <div class="p-6 text-center">
+          <h3 class="text-2xl font-semibold mb-2">{{ image.title }}</h3>
+          <p class="text-gray-400 mb-4">{{ image.description }}</p>
+          <span class="bg-indigo-600/20 text-indigo-400 px-4 py-1 rounded-full text-sm">
+            {{ image.category }}
+          </span>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>
